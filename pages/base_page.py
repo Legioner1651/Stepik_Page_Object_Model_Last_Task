@@ -115,7 +115,7 @@ class BasePage():
 
     # абстрактный метод, который проверяет, что пользователь залогинен:
     def should_be_authorized_user(self):                                                                                            # (v.4.3 step 13)
-        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," " probably unauthorised user"    # (v.4.3 step 13)
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented, probably unauthorised user"    # (v.4.3 step 13)
 
 
     def add_product(self, name, price, amount = 1):     # ????????

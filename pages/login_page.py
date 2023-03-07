@@ -1,6 +1,7 @@
 # файл скачан по ссылке # (v.4.2 step 8)    https://stepik.org/media/attachments/lesson/199980/login_page.py
 from .base_page import BasePage
 from .locators import LoginAndRegistrationLocators
+import time
 
 
 # метод, который будет проверять наличие ссылки.
@@ -33,5 +34,18 @@ class LoginPage(BasePage):                    # (v.4.2 step 8)
         assert self.is_element_present(*LoginAndRegistrationLocators.REGISTER_PASSWORD2_LINK), "Отсутствует поле ввода подтверждения пароля"
         assert self.is_element_present(*LoginAndRegistrationLocators.REGISTER_BUTTON_LINK), "Отсутствует кнопка регистрацииа"
 
-#    def register_new_user(email, password):     # (v.4.3 step 13)   принимает две строки и регистрирует пользователя
+    def register_new_user(self, email, password):     # (v.4.3 step 13)   принимает две строки и регистрирует пользователя
 #        Реализуйте его, описав соответствующие элементы страницы.
+        # проверить что поля существуют
+        self.should_be_register_form()
+        # заполнить поля
+        email_link = self.browser.find_element(*LoginAndRegistrationLocators.REGISTER_EMAIL_LINK)
+        email_link.send_keys(email)
+        password1_link = self.browser.find_element(*LoginAndRegistrationLocators.REGISTER_PASSWORD1_LINK)
+        password1_link.send_keys(password)
+        password2_link = self.browser.find_element(*LoginAndRegistrationLocators.REGISTER_PASSWORD2_LINK)
+        password2_link.send_keys(password)
+        # submite
+        time.sleep(10)
+        button_link = self.browser.find_element(*LoginAndRegistrationLocators.REGISTER_BUTTON_LINK)
+        button_link.click()
