@@ -1,22 +1,16 @@
 from selenium.webdriver.common.by import By
 from .base_page import BasePage
 from .locators import BasketLocators
-#from .login_page import LoginPage
 
 
 
-# главная страница нашего приложения
-class BasketPage(BasePage):             # (v.4.3 step 10)
+class BasketPage(BasePage):
 
-    # В классе BasePage реализуйте соответствующий метод для перехода в корзину.      # (v.4.3 step 10)
-    # Создайте файл basket_page.py и в нем класс BasketPage.
-    # Реализуйте там необходимые проверки, в том числе отрицательную, которую мы обсуждали в предыдущих шагах.
-
-    def should_be_basket_button(self):    #?????
-        assert self.is_element_present(*ProductPageLocators.PRODUCT_BUTTON_BASKET_LINK), "Button link is not presented" # Селектор берем из class ProductPageLocators()
+    def should_be_basket_button(self):
+        assert self.is_element_present(*ProductPageLocators.PRODUCT_BUTTON_BASKET_LINK), "Button link is not presented"
 
 
-    def should_be_empty(self):                         # (v.4.3 step 10)
+    def should_be_empty(self):
         assert self.is_element_present(*BasketLocators.EMPTY_BASKET_LINK), "Basket is not empty"
 
 

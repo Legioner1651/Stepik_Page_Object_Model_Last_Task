@@ -1,51 +1,37 @@
-# файл скачан по ссылке # (v.4.2 step 8)    https://stepik.org/media/attachments/lesson/199980/login_page.py
 from .base_page import BasePage
 from .locators import LoginAndRegistrationLocators
-import time
 
 
-# метод, который будет проверять наличие ссылки.
-# Обычно все такие методы-проверки называются похожим образом,
-# мы будем называть их should_be_(название элемента)
-class LoginPage(BasePage):                    # (v.4.2 step 8)
+class LoginPage(BasePage):
     
-    def should_be_login_page(self):           # (v.4.2 step 8)
-        self.should_be_login_url()            # (v.4.2 step 8)
-        self.should_be_login_form()           # (v.4.2 step 8)
-        self.should_be_register_form()        # (v.4.2 step 8)
+    def should_be_login_page(self):
+        self.should_be_login_url()
+        self.should_be_login_form()
+        self.should_be_register_form()
 
-    def should_be_login_url(self):            # (v.4.2 step 8)
-        # реализуйте проверку на корректный url адрес
-        # В методе should_be_login_url реализуйте проверку, что подстрока "login" есть в текущем url браузера. Для этого используйте соответствующее свойство Webdriver (v.4.2 step 8)
-        current_url = self.browser.current_url   # Gets the URL of the current page
-        assert 'login' in current_url, "Current URL итсутствует подстрока 'login'"
+    def should_be_login_url(self):
+        current_url = self.browser.current_url
+        assert 'login' in current_url, "Current URL и отсутствует подстрока 'login'"
         assert current_url == self.url, "Current URL !=  URL in BasePage"
 
-    def should_be_login_form(self):            # (v.4.2 step 8)
-        # реализуйте проверку, что есть форма логина
-        assert self.is_element_present(*LoginAndRegistrationLocators.LOGIN_EMAIL_LINK), "Отсутствует поле ввода email"        # find_element
+    def should_be_login_form(self):
+        assert self.is_element_present(*LoginAndRegistrationLocators.LOGIN_EMAIL_LINK), "Отсутствует поле ввода email"
         assert self.is_element_present(*LoginAndRegistrationLocators.LOGIN_PASSWORD_LINK), "Отсутствует поле ввода пароля"
-        assert self.is_element_present(*LoginAndRegistrationLocators.LOGIN_BUTTON_LINK), "Отсутствует кнопка ввхода"
+        assert self.is_element_present(*LoginAndRegistrationLocators.LOGIN_BUTTON_LINK), "Отсутствует кнопка входа"
 
-    def should_be_register_form(self):         # (v.4.2 step 8)
-        # реализуйте проверку, что есть форма регистрации на странице
+    def should_be_register_form(self):
         assert self.is_element_present(*LoginAndRegistrationLocators.REGISTER_EMAIL_LINK), "Отсутствует поле ввода email"
         assert self.is_element_present(*LoginAndRegistrationLocators.REGISTER_PASSWORD1_LINK), "Отсутствует поле ввода пароля"
         assert self.is_element_present(*LoginAndRegistrationLocators.REGISTER_PASSWORD2_LINK), "Отсутствует поле ввода подтверждения пароля"
-        assert self.is_element_present(*LoginAndRegistrationLocators.REGISTER_BUTTON_LINK), "Отсутствует кнопка регистрацииа"
+        assert self.is_element_present(*LoginAndRegistrationLocators.REGISTER_BUTTON_LINK), "Отсутствует кнопка регистрации"
 
-    def register_new_user(self, email, password):     # (v.4.3 step 13)   принимает две строки и регистрирует пользователя
-#        Реализуйте его, описав соответствующие элементы страницы.
-        # проверить что поля существуют
+    def register_new_user(self, email, password):
         self.should_be_register_form()
-        # заполнить поля
         email_link = self.browser.find_element(*LoginAndRegistrationLocators.REGISTER_EMAIL_LINK)
         email_link.send_keys(email)
         password1_link = self.browser.find_element(*LoginAndRegistrationLocators.REGISTER_PASSWORD1_LINK)
         password1_link.send_keys(password)
         password2_link = self.browser.find_element(*LoginAndRegistrationLocators.REGISTER_PASSWORD2_LINK)
         password2_link.send_keys(password)
-        # submite
-        time.sleep(10)
         button_link = self.browser.find_element(*LoginAndRegistrationLocators.REGISTER_BUTTON_LINK)
         button_link.click()
