@@ -8,7 +8,7 @@ class ProductPage(BasePage):
 
     # проверка наличия кнопки "Добавить в корзину"
     def should_be_basket_button(self):
-        assert self.is_element_present(*ProductPageLocators.BUTTON_BASKET_LINK), "Button link is not presented" # Селектор берем из class ProductPageLocators()
+        assert self.is_element_present(*ProductPageLocators.BUTTON_BASKET_LINK), "Button link is not presented"
 
 
     # нажатие на кнопку "Добавить в корзину"
@@ -85,7 +85,7 @@ class ProductPage(BasePage):
 
     # метод, который будет проверять наличие ссылки. Обычно все такие методы-проверки называются похожим образом, мы будем называть их should_be_(название элемента)
     def should_be_login_link(self):
-        assert self.is_element_present(*BasePageLocators.BUTTON_SIGN_IN_OR_UP), "Login link is not presented" # Селектор берем из class ProductPageLocators()
+        assert self.is_element_present(*BasePageLocators.BUTTON_SIGN_IN_OR_UP), "Login link is not presented"
 
 
     # False, если в течении выбранного промежутка времени появится искомый сообщение.
